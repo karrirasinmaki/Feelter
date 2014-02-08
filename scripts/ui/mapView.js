@@ -6,7 +6,11 @@ define(["./gmaps.infobox"], function(____) {
     var getUserPosition = function() {
         if(navigator.geolocation) {
             var pos = navigator.geolocation.getCurrentPosition(function(pos) {
-                userLocation = {latlong: [pos.coords.latitude, pos.coords.longitude]};
+                userLocation = {
+                    name: "You",
+                    info: "This is you, hi!",
+                    latlong: [pos.coords.latitude, pos.coords.longitude]
+                };
                 addMarkers([userLocation], "");
             });
         }
@@ -21,10 +25,12 @@ define(["./gmaps.infobox"], function(____) {
         infobox;
     
     var getInfoBoxTemplate = function(titleText, bodyText, lat, long) {
+        var fragment = document.createDocumentFragment();
         var div = document.createElement("div"),
             title = document.createElement("h2"),
             guideButton = document.createElement("button"),
-            theBody = document.createElement("p");
+            theBody = document.createElement("p"),
+            arrowWrapper = document.createElement("div");
         
         title.textContent = titleText;
         guideButton.className = "guidebutton";
@@ -37,7 +43,16 @@ define(["./gmaps.infobox"], function(____) {
         div.appendChild(title);
         div.appendChild(guideButton);
         div.appendChild(theBody);
-        return div;
+        div.className = "map-infobox";
+        
+        var arrow = document.createElement("span");
+        arrow.className = "arrow-down";
+        arrowWrapper.appendChild(arrow);
+        arrowWrapper.className = "arrow-wrapper";
+        
+        fragment.appendChild(div);
+        fragment.appendChild(arrowWrapper);
+        return fragment;
     };
     
     var closeInfoBox = function() {
@@ -49,12 +64,12 @@ define(["./gmaps.infobox"], function(____) {
         closeInfoBox();
         infobox = new InfoBox({
             alignBottom: true,
-            pixelOffset: new google.maps.Size(-150, -50),
+            pixelOffset: new google.maps.Size(-150, -20),
             boxStyle: {
                 width: "300px"
             },
             content: getInfoBoxTemplate(extra.name, extra.info, extra.latlong[0], extra.latlong[1]),
-            boxClass: "map-infobox",
+            boxClass: "arrowbox",
             closeBoxURL: ""
         });
         infobox.open(this.map, this);
@@ -77,7 +92,7 @@ define(["./gmaps.infobox"], function(____) {
             google.maps.event.addListener(marker, 'click', openMarkerInfo);
             
             iterator++;
-            if(iterator < data.length) setTimeout(add, 300);
+            if(iterator < data.length) setTimeout(add, 400);
         }
         add();
     };

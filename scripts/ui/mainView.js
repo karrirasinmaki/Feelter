@@ -9,8 +9,6 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         var wdg = context.widgets;
         
         var body = document.getElementsByTagName("body")[0];
-        var area = document.createElement("div");
-            area.id = "canvas";
         
         var filterBox = filterView.generate({
             data: placeData,
@@ -26,6 +24,9 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
                 wdg.toggleVisibility(filterBox);
             }
         });
+        
+        var area = document.createElement("div");
+        area.id = "themap";
         
         var infoBox = wdg.infoBox({
             innerHTML: INFO_BOX_TEXT
@@ -44,6 +45,8 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         body.appendChild(area);
         body.appendChild(infoBox);
         body.appendChild(infoButton);
+        
+        area.style.top = topbar.offsetHeight + "px";
         
         mapView.init(context, area);
         mapView.refresh(placeData.getPlaces());

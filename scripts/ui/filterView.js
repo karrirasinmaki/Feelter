@@ -8,6 +8,7 @@ define(["./widgets"], function(widgets) {
     
     var container = widgets.box();
     widgets.addClass(container, "infobox");
+    container.style.zIndex = 11;
     var filters = widgets.box({className: "filters"});
     var bottomBar = widgets.box();
     
