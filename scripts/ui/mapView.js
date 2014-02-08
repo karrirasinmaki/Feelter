@@ -14,6 +14,7 @@ define(["./gmaps.infobox"], function(____) {
                 addMarkers([userLocation], "");
             });
         }
+        userLocation = {latlong: ["Current+Location"]};
     };
     
     var GUIDE_BUTTON_TEXT = "Guide me there!";
@@ -34,7 +35,7 @@ define(["./gmaps.infobox"], function(____) {
         
         title.textContent = titleText;
         guideButton.className = "guidebutton";
-        guideButton.href = "http://maps.google.com/maps?saddr=Current+location&daddr="+lat+","+long;
+        guideButton.href = "http://maps.google.com/maps?saddr="+userLocation.latlong.join(",")+"&daddr="+lat+","+long;
         guideButton.target = "_blank";
         guideButton.textContent = GUIDE_BUTTON_TEXT;
         theBody.textContent = bodyText;
