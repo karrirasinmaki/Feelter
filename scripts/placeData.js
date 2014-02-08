@@ -8,15 +8,20 @@ define(function() {
             "AeroPress",
             "Chemex",
             "Coffee Shot"
+        ],
+        services: [
+            "WiFi"
         ]
     };
     var STRINGS = {
-        production_methods: "Method"
+        production_methods: "Method",
+        services: "Services"
     };
-    var FILTERS = ["production_methods"];
+    var FILTERS = ["production_methods", "services"];
     
     var params = {
-        production_methods: [true,true,true,true,true,true]
+        production_methods: [true,true,true,true,true,true],
+        services: [true]
     };
     
     // Count of how many places serves like Espresso
@@ -42,7 +47,7 @@ define(function() {
     var lookParamSet = function(p, paramSetKey) {
         var paramSet = params[paramSetKey];
         for(var i=0, l=paramSet.length; i<l; ++i) {
-            if(paramSet[i] && p[paramSetKey].indexOf( i ) !== -1) return true;
+            if(paramSet[i] && p[paramSetKey] && p[paramSetKey].indexOf( i ) !== -1) return true;
         }
         return false;
     };

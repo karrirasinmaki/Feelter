@@ -56,7 +56,18 @@ define(["./gmaps.infobox"], function(____) {
     };
     
     var closeInfoBox = function() {
-        infobox.close && infobox.close();
+        var closingInfoBox = infobox;
+        if(closingInfoBox.close && closingInfoBox.div_) {
+            context.widgets.addClass(closingInfoBox.div_, "flipOutY");
+            closingInfoBox.div_.style.webkitAnimationDuration = "0.4s";
+            closingInfoBox.div_.style.mozAnimationDuration = "0.4s";
+            closingInfoBox.div_.style.msAnimationDuration = "0.4s";
+            closingInfoBox.div_.style.animationDuration = "0.4s";
+            setTimeout(function() {
+                closingInfoBox.close();
+                closingInfoBox = null;
+            }, 400);
+        }
     };
     
     var onClickMarker = function(event) {

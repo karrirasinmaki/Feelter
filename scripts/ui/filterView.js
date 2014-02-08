@@ -1,5 +1,8 @@
 define(["./widgets"], function(widgets) {
     
+    var FILTER_BOX_FANCY_TITLE = "How'd you want to have it?";
+    var FILTER_BOX_HELPER_TEXT = "Select your prefers.";
+    
     var onChangeListener;
     
     var notifyOnChange = function() {
@@ -9,10 +12,11 @@ define(["./widgets"], function(widgets) {
     var container = widgets.box();
     widgets.addClass(container, "infobox");
     container.style.zIndex = 11;
+    var topBar = widgets.box({className: "title"});
     var filters = widgets.box({className: "filters"});
     var bottomBar = widgets.box();
     
-    var addFilters = function(data, selected, key) {
+    var addFiltersTo = function(to, data, selected, key) {
         for(var i=0, l=data.length; i<l; ++i) {
             var d = data[i];
             var filtersItem = widgets.box({
@@ -42,7 +46,7 @@ define(["./widgets"], function(widgets) {
                 widgets.removeClass(filtersItem, "selected");
             }
             
-            filters.appendChild(filtersItem);
+            to.appendChild(filtersItem);
         }
     };
     
@@ -53,7 +57,11 @@ define(["./widgets"], function(widgets) {
         for(var i=0, l=data.FILTERS.length; i<l; ++i) {
             var k = data.FILTERS[i];
             
-            addFilters(data.VALUES[k], data.params[k], k);
+            var newPage = widgets.box({
+                className: "page-"+i
+            });
+            addFiltersTo(newPage, data.VALUES[k], data.params[k], k);
+            filters.appendChild(newPage);
             
             var bottomBarItem = widgets.box({
                 textContent: data.STRINGS[k],
@@ -64,6 +72,9 @@ define(["./widgets"], function(widgets) {
             bottomBar.appendChild(bottomBarItem);
         }
         
+        topBar.innerHTML = "<b>"+FILTER_BOX_FANCY_TITLE+"</b><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
+        
+        container.appendChild(topBar);
         container.appendChild(filters);
         container.appendChild(bottomBar);
         return container;
