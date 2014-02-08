@@ -12,14 +12,20 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         var area = document.createElement("div");
             area.id = "canvas";
         
+        var filterBox = filterView.generate({
+            data: placeData,
+            onchange: function() {console.log(placeData);
+                mapView.refresh(placeData.getPlaces());
+            }
+        });
+        wdg.hide(filterBox);
+        
         var topbar = wdg.topBar({
             innerHTML: '<div class="left">HELSINKI<br>COFFEE<br>MAP</div><div class="right">Find the best brew!</div>',
             onclick: function() {
-                
+                wdg.toggleVisibility(filterBox);
             }
         });
-        
-        var filterBox = filterView.generate(placeData);
         
         var infoBox = wdg.infoBox({
             innerHTML: INFO_BOX_TEXT

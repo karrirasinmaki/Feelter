@@ -16,8 +16,11 @@ define(function() {
     var FILTERS = ["production_methods"];
     
     var params = {
-        production_methods: [0,1,2,3,4,5]
+        production_methods: [true,true,true,true,true,true]
     };
+    
+    // Count of how many places serves like Espresso
+    var statistics = {};
     
     var places = [
         {
@@ -35,10 +38,11 @@ define(function() {
     ];
     
     // If any of param vals found in p, return true. Else false.
+    // Paramsetkey could be like "production_methods"
     var lookParamSet = function(p, paramSetKey) {
         var paramSet = params[paramSetKey];
         for(var i=0, l=paramSet.length; i<l; ++i) {
-            if(p[paramSetKey].indexOf( paramSet[i] ) !== -1) return true;
+            if(paramSet[i] && p[paramSetKey].indexOf( i ) !== -1) return true;
         }
         return false;
     };
@@ -50,13 +54,28 @@ define(function() {
             
             for(var key in params) {
                 if(!params.hasOwnProperty(key)) continue;
-                if( params[key].length === VALUES[key].length || lookParamSet(p, key) ) {
+                if( lookParamSet(p, key) ) {
                     out.push(p);
                     break;
                 }
             }
         }
         return out;
+    };
+    
+    var countStatistics = function() {
+        function mapp(o) {
+            for(var k in o) {
+                if(!o.hasOwnProperty(k)) continue;
+                statistics[k] = {};
+                mapp(o[k]);
+            }
+        }
+        mapp(VALUES);
+        
+        for(var i=0, l=places.length; i<l; ++i) {
+            //TODO
+        }
     };
     
     return {

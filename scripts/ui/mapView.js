@@ -1,6 +1,16 @@
 define(["./gmaps.infobox"], function(____) {
     
     var helsinki = {latlong: [60.1733244, 24.9410248]};
+    var userLocation = helsinki;
+    
+    var getUserPosition = function() {
+        if(navigator.geolocation) {
+            var pos = navigator.geolocation.getCurrentPosition(function(pos) {
+                userLocation = {latlong: [pos.coords.latitude, pos.coords.longitude]};
+                addMarkers([userLocation]);
+            });
+        }
+    };
     
     var GUIDE_BUTTON_TEXT = "Guide me there!";
         
@@ -63,6 +73,11 @@ define(["./gmaps.infobox"], function(____) {
             google.maps.event.addListener(marker, 'click', openMarkerInfo);
         }
     };
+    var removeAllMarkers = function() {
+        for(var i=0, l=markers.length; i<l; ++i) {
+            markers[i].setMap(null);
+        }
+    };
     
     var init = function(ctx, area) {
         context = ctx;
@@ -70,14 +85,17 @@ define(["./gmaps.infobox"], function(____) {
         
         area.style.height = "100%";
         var mapOptions = {
-            center: new google.maps.LatLng(helsinki.latlong[0], helsinki.latlong[1]),
+            center: new google.maps.LatLng(userLocation.latlong[0], userLocation.latlong[1]),
             zoom: 15
         };
         map = new google.maps.Map(area, mapOptions);
         google.maps.event.addListener(map, 'click', closeInfoBox);
+        
+        getUserPosition();
     };
     
     var refresh = function(_places) {
+        removeAllMarkers();
         addMarkers(_places);  
     };
     
