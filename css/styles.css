@@ -89,6 +89,10 @@ body {
     border-top: 30px solid #5f92ff;
 }
 
+#filterbox {
+    bottom: 100%;
+}
+
 #themap {
     position: absolute;
     top: 7.4em;

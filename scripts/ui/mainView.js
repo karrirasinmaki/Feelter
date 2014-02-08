@@ -10,26 +10,29 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         
         var body = document.getElementsByTagName("body")[0];
         
+        /* FilterBox */
         var filterBox = filterView.generate({
             data: placeData,
             onchange: function() {console.log(placeData);
                 mapView.refresh(placeData.getPlaces());
             }
         });
-        wdg.animate.slideDown(filterBox, function() {
+        filterBox.id = "filterbox";
+        wdg.animate.slideUp(filterBox, function() {
             wdg.toggleClass(filterBox, "slidden");
         }, 1);
         
         var topbar = wdg.topBar({
             innerHTML: '<div class="left">HELSINKI<br>COFFEE<br>MAP</div><div class="right">Find the best brew!</div>',
             onclick: function() {
-                wdg.animate.slideHide(filterBox);
+                wdg.animate.slideHideUp(filterBox);
             }
         });
         
         var area = document.createElement("div");
         area.id = "themap";
         
+        /* InfoBox */
         var infoBox = wdg.infoBox({
             innerHTML: INFO_BOX_TEXT
         });

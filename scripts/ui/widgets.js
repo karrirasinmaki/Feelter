@@ -98,6 +98,14 @@ define(function() {
             else animate.slideUp(el, function() {
                 toggleClass(el, "slidden");
             }, 500);
+        },
+        slideHideUp: function(el) {
+            if( !hasClass(el, "slidden") ) animate.slideUp(el, function() {
+                toggleClass(el, "slidden");
+            }, 500);
+            else animate.slideDown(el, function() {
+                toggleClass(el, "slidden");
+            }, 500);
         }
     };
     
