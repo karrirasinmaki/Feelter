@@ -16,10 +16,18 @@
                 overflow: hidden;
                 -webkit-touch-callout: none !important;
             }
-            
-            .topbar {
-                background: #bf004a;
+            .hidden {
+                display: none;
             }
+            
+            .topbar, .infobox, .map-infobox, .infobutton {
+                background: #5f92ff;
+                color: #fff;
+            }
+            .guidebutton, .infobutton {
+                border: none;
+            }
+            
             .topbar:after {
                 content: "";
                 width: 0; 
@@ -28,6 +36,41 @@
                 border-right: 20px solid transparent;
                 
                 border-top: 20px solid #bf004a;
+            }
+            
+            .map-infobox {
+                text-align: center;
+                font-size: initial;
+                padding: 1em 0.5em;
+            }
+            
+            .guidebutton {
+                width: 100%;
+                line-height: 3em;
+                background: #fff;
+                color: #5f92ff;
+                font-style: italic;
+                font-size: larger;
+            }
+            
+            .infobutton {
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                width: 1.5em;
+                height: 1.5em;
+                line-height: 1.5em;
+                border-radius: 50% 50%;
+                font-size: 2em;
+                text-align: center;
+            }
+            
+            .infobox {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding: 3em 2em;
             }
         </style>
     </head>

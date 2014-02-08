@@ -10,7 +10,6 @@ var MetroCoffee = (function() {
         };
         
         mainView.init(context);
-        mainView.draw();
     });
     
 })();

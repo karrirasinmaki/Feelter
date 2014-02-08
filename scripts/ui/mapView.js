@@ -1,17 +1,54 @@
-define(["mapMarks"], function(places) {
+define(["./gmaps.infobox", "mapMarks"], function(____, mapData) {
     
     var helsinki = {latlong: [60.1733244, 24.9410248]};
+    
+    var GUIDE_BUTTON_TEXT = "Guide me there!";
         
     var context,
         view,
         map,
-        markers = [];
+        markers = [],
+        infobox,
+        places = mapData.getPlaces();
+    
+    var getInfoBoxTemplate = function(titleText, bodyText, lat, long) {
+        var div = document.createElement("div"),
+            title = document.createElement("h2"),
+            guideButton = document.createElement("button"),
+            theBody = document.createElement("p");
+        
+        title.textContent = titleText;
+        guideButton.className = "guidebutton";
+        guideButton.textContent = GUIDE_BUTTON_TEXT;
+        guideButton.onclick = function() {
+            console.log("mo");
+        };
+        theBody.textContent = bodyText;
+        
+        div.appendChild(title);
+        div.appendChild(guideButton);
+        div.appendChild(theBody);
+        return div;
+    };
+    
+    var closeInfoBox = function() {
+        infobox && infobox.close();
+    };
     
     var openMarkerInfo = function(event) {
-        var infowindow = new google.maps.InfoWindow({
-            content: this._extraPlaceData.name
+        var extra = this._extraPlaceData;
+        closeInfoBox();
+        infobox = new InfoBox({
+            alignBottom: true,
+            pixelOffset: new google.maps.Size(-150, -50),
+            boxStyle: {
+                width: "300px"
+            },
+            content: getInfoBoxTemplate(extra.name, extra.info, extra.latlong[0], extra.latlong[1]),
+            boxClass: "map-infobox",
+            closeBoxURL: ""
         });
-        infowindow.open(this.map, this);
+        infobox.open(this.map, this);
     };
     
     var addMarkers = function() {
@@ -38,15 +75,13 @@ define(["mapMarks"], function(places) {
             zoom: 15
         };
         map = new google.maps.Map(area, mapOptions);
+        google.maps.event.addListener(map, 'click', closeInfoBox);
         
         addMarkers();
     };
-    var draw = function() {
-    };
     
     return {
-        init: init,
-        draw: draw
+        init: init
     }
     
 });
