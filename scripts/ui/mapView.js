@@ -7,7 +7,7 @@ define(["./gmaps.infobox"], function(____) {
         if(navigator.geolocation) {
             var pos = navigator.geolocation.getCurrentPosition(function(pos) {
                 userLocation = {latlong: [pos.coords.latitude, pos.coords.longitude]};
-                addMarkers([userLocation]);
+                addMarkers([userLocation], "");
             });
         }
     };
@@ -60,13 +60,15 @@ define(["./gmaps.infobox"], function(____) {
         infobox.open(this.map, this);
     };
     
-    var addMarkers = function(data) {
+    var addMarkers = function(data, icon) {
+        icon = icon || "img/circle.png";
         for(var i=0; i<data.length; ++i) {
             var place = data[i];
             var marker = new google.maps.Marker({
                 map: map,
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(place.latlong[0], place.latlong[1]),
+                icon: icon,
                 _extraPlaceData: place
             });
             markers.push(marker);
