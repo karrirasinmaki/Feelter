@@ -2,69 +2,44 @@ define(function() {
     
     var superWidget = function(el, params) {
         params = params || {};
-        if(params.innerHTML) el.innerHTML = params.innerHTML;
-        if(params.textContent) el.textContent = params.textContent;
-        if(params.className) el.className += " "+params.className;
-        el.onclick = params.onclick;
+        for(var k in params) {
+            if(!params.hasOwnProperty(k)) continue;
+            el[k] = params[k];
+        }
     };
     
     var box = function(params) {
         var div = document.createElement("div");
-        div.className = "box";
-        
         superWidget(div, params);
+        div.className += " box";
+        
         return div;
     };
     
     var topBar = function(params) {
         var div = document.createElement("div");
-        div.className = "topbar";
-        
         superWidget(div, params);
+        div.className += " topbar";
+        
         return div;
     };
     
     var infoButton = function(params) {
         var button = document.createElement("button");
-        button.className = "infobutton";
-        
         superWidget(button, params);
+        button.className += " infobutton";
+        
         return button;
     };
     
     var infoBox = function(params) {
         var div = document.createElement("div");
-        div.className = "infobox";
-        
         superWidget(div, params);
+        div.className += " infobox";
+        
         return div;
     }
-    
-    var animate = {
-        setTransform: function(el, command) {
-            if(el.style.webkitTransform !== undefined) el.style.webkitTransform = command;
-            else if(el.style.transform !== undefined) el.style.transform = command;
-            else if(el.style.msTransform !== undefined) el.style.msTransform = command;
-            else if(el.style.mozTransform !== undefined) el.style.mozTransform = command;
-        },
-        slideUp: function(el, callback, duration) {
-            duration = duration || 700;
-            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
-            el.style.transition = (duration/1000) + "s all";
-            animate.setTransform( el, "translate(0px, "+to+")" );
-            animate.setTransform( el, "translate(0px, 0px)" );
-            setTimeout(callback, duration);
-        },
-        slideDown: function(el, callback, duration) {
-            duration = duration || 700;
-            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
-            el.style.transition = (duration/1000) + "s all";
-            animate.setTransform( el, "translate(0px, 0px)" );
-            animate.setTransform( el, "translate(0px, "+to+")" );
-            setTimeout(callback, duration);
-        }
-    };
-    
+        
     var hasClass = function(el, className) {
         return el.className.indexOf(className) !== -1;
     };
@@ -91,6 +66,39 @@ define(function() {
     };
     var toggleVisibility = function(el) {
         toggleClass(el, "hidden");
+    };
+    
+    var animate = {
+        setTransform: function(el, command) {
+            if(el.style.webkitTransform !== undefined) el.style.webkitTransform = command;
+            else if(el.style.transform !== undefined) el.style.transform = command;
+            else if(el.style.msTransform !== undefined) el.style.msTransform = command;
+            else if(el.style.mozTransform !== undefined) el.style.mozTransform = command;
+        },
+        slideUp: function(el, callback, duration) {
+            duration = duration || 700;
+            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, "+to+")" );
+            animate.setTransform( el, "translate(0px, 0px)" );
+            setTimeout(callback, duration);
+        },
+        slideDown: function(el, callback, duration) {
+            duration = duration || 700;
+            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, 0px)" );
+            animate.setTransform( el, "translate(0px, "+to+")" );
+            setTimeout(callback, duration);
+        },
+        slideHide: function(el) {
+            if( !hasClass(el, "slidden") ) animate.slideDown(el, function() {
+                toggleClass(el, "slidden");
+            }, 500);
+            else animate.slideUp(el, function() {
+                toggleClass(el, "slidden");
+            }, 500);
+        }
     };
     
     return {

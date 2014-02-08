@@ -30,14 +30,16 @@ define(function() {
     var places = [
         {
             name: "Awe & Some Coffee",
+            phone: "000 000 000",
+            email: "awesome@gmail.com",
             latlong: [60.1733244, 24.9410248],
-            info: "Best coffee ever",
             production_methods: [1, 3, 4]
         },
         {
             name: "mBar",
+            phone: "122 332 221",
+            email: "mbar@mbar.fi",
             latlong: [60.170544, 24.936228],
-            info: "Only second best coffee",
             production_methods: [5, 0]
         }
     ];

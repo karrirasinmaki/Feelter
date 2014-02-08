@@ -58,16 +58,21 @@ define(["./widgets"], function(widgets) {
             var k = data.FILTERS[i];
             
             var newPage = widgets.box({
-                className: "page-"+i
+                className: "page id-"+i
             });
             addFiltersTo(newPage, data.VALUES[k], data.params[k], k);
+            
             filters.appendChild(newPage);
+            widgets.animate.slideDown(newPage, function() {
+                widgets.toggleClass(newPage, "slidden");
+            }, 1);
             
             var bottomBarItem = widgets.box({
                 textContent: data.STRINGS[k],
                 onclick: function() {
-                    console.log(",,o");
-                }
+                    widgets.animate.slideHide(this._pageAttached);
+                },
+                _pageAttached: newPage
             });
             bottomBar.appendChild(bottomBarItem);
         }

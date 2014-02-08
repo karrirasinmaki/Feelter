@@ -25,7 +25,7 @@ define(["./gmaps.infobox"], function(____) {
         markers = [],
         infobox = {};
     
-    var getInfoBoxTemplate = function(titleText, bodyText, lat, long) {
+    var getInfoBoxTemplate = function(data) {
         var fragment = document.createDocumentFragment();
         var div = document.createElement("div"),
             title = document.createElement("h2"),
@@ -33,12 +33,14 @@ define(["./gmaps.infobox"], function(____) {
             theBody = document.createElement("p"),
             arrowWrapper = document.createElement("div");
         
-        title.textContent = titleText;
+        title.textContent = data.name;
+        
         guideButton.className = "guidebutton";
-        guideButton.href = "http://maps.google.com/maps?saddr="+userLocation.latlong.join(",")+"&daddr="+lat+","+long;
+        guideButton.href = "http://maps.google.com/maps?saddr="+userLocation.latlong.join(",")+"&daddr="+data.lat+","+data.long;
         guideButton.target = "_blank";
         guideButton.textContent = GUIDE_BUTTON_TEXT;
-        theBody.textContent = bodyText;
+        
+        theBody.innerHTML = '<div class="phone">'+data.phone+'</div><div class="email">'+data.email+'</div>';
         
         div.appendChild(title);
         div.appendChild(guideButton);
@@ -80,7 +82,7 @@ define(["./gmaps.infobox"], function(____) {
                 boxStyle: {
                     width: "300px"
                 },
-                content: getInfoBoxTemplate(extra.name, extra.info, extra.latlong[0], extra.latlong[1]),
+                content: getInfoBoxTemplate(extra),
                 boxClass: "arrowbox",
                 closeBoxURL: ""
             });

@@ -136,8 +136,12 @@ body {
 }
 
 .filters {
+    position: relative;
     overflow: hidden;
     text-align: center;
+}
+.filters .page {
+    /* TODO */
 }
 .filteritem {
     position: relative;
