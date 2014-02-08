@@ -31,12 +31,19 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         var infoBox = wdg.infoBox({
             innerHTML: INFO_BOX_TEXT
         });
-        wdg.hide(infoBox);
+        wdg.animate.slideDown(infoBox, function() {
+            wdg.toggleClass(infoBox, "slidden");
+        }, 1);
         
         var infoButton = wdg.infoButton({
             textContent: "i",
             onclick: function() {
-                wdg.toggleVisibility(infoBox);
+                if( !wdg.hasClass(infoBox, "slidden") ) wdg.animate.slideDown(infoBox, function() {
+                    wdg.toggleClass(infoBox, "slidden");
+                }, 500);
+                else wdg.animate.slideUp(infoBox, function() {
+                    wdg.toggleClass(infoBox, "slidden");
+                }, 500);
             }
         });
         

@@ -10,6 +10,7 @@ var MetroCoffee = (function() {
         };
         
         utils.load.css("font/nexa.css");
+        utils.load.css("css/animate.css");
         mainView.init(context);
     });
     

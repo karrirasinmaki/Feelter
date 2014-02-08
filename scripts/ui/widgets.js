@@ -40,6 +40,31 @@ define(function() {
         return div;
     }
     
+    var animate = {
+        setTransform: function(el, command) {
+            if(el.style.webkitTransform !== undefined) el.style.webkitTransform = command;
+            else if(el.style.transform !== undefined) el.style.transform = command;
+            else if(el.style.msTransform !== undefined) el.style.msTransform = command;
+            else if(el.style.mozTransform !== undefined) el.style.mozTransform = command;
+        },
+        slideUp: function(el, callback, duration) {
+            duration = duration || 700;
+            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, "+to+")" );
+            animate.setTransform( el, "translate(0px, 0px)" );
+            setTimeout(callback, duration);
+        },
+        slideDown: function(el, callback, duration) {
+            duration = duration || 700;
+            var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, 0px)" );
+            animate.setTransform( el, "translate(0px, "+to+")" );
+            setTimeout(callback, duration);
+        }
+    };
+    
     var hasClass = function(el, className) {
         return el.className.indexOf(className) !== -1;
     };
@@ -55,6 +80,9 @@ define(function() {
         else addClass(el, className);
     };
     
+    var isVisible = function(el) {
+        return !hasClass(el, "hidden");
+    };
     var hide = function(el) {
         addClass(el, "hidden");
     };
@@ -71,11 +99,14 @@ define(function() {
         infoButton: infoButton,
         infoBox: infoBox,
         
+        animate: animate,
+        
         hasClass: hasClass,
         addClass: addClass,
         removeClass: removeClass,
         toggleClass: toggleClass,
         
+        isVisible: isVisible,
         hide: hide,
         show: show,
         toggleVisibility: toggleVisibility
