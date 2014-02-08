@@ -22,22 +22,21 @@ define(["./gmaps.infobox"], function(____) {
         view,
         map,
         markers = [],
-        infobox;
+        infobox = {};
     
     var getInfoBoxTemplate = function(titleText, bodyText, lat, long) {
         var fragment = document.createDocumentFragment();
         var div = document.createElement("div"),
             title = document.createElement("h2"),
-            guideButton = document.createElement("button"),
+            guideButton = document.createElement("a"),
             theBody = document.createElement("p"),
             arrowWrapper = document.createElement("div");
         
         title.textContent = titleText;
         guideButton.className = "guidebutton";
+        guideButton.href = "http://maps.google.com/maps?saddr=Current+location&daddr="+lat+","+long;
+        guideButton.target = "_blank";
         guideButton.textContent = GUIDE_BUTTON_TEXT;
-        guideButton.onclick = function() {
-            console.log("mo");
-        };
         theBody.textContent = bodyText;
         
         div.appendChild(title);
@@ -56,23 +55,29 @@ define(["./gmaps.infobox"], function(____) {
     };
     
     var closeInfoBox = function() {
-        infobox && infobox.close();
+        infobox.close && infobox.close();
     };
     
-    var openMarkerInfo = function(event) {
+    var onClickMarker = function(event) {
         var extra = this._extraPlaceData;
         closeInfoBox();
-        infobox = new InfoBox({
-            alignBottom: true,
-            pixelOffset: new google.maps.Size(-150, -20),
-            boxStyle: {
-                width: "300px"
-            },
-            content: getInfoBoxTemplate(extra.name, extra.info, extra.latlong[0], extra.latlong[1]),
-            boxClass: "arrowbox",
-            closeBoxURL: ""
-        });
-        infobox.open(this.map, this);
+        if(infobox._markerId !== this._id) {
+            infobox = new InfoBox({
+                alignBottom: true,
+                pixelOffset: new google.maps.Size(-150, -20),
+                boxStyle: {
+                    width: "300px"
+                },
+                content: getInfoBoxTemplate(extra.name, extra.info, extra.latlong[0], extra.latlong[1]),
+                boxClass: "arrowbox",
+                closeBoxURL: ""
+            });
+            infobox._markerId = this._id;
+            infobox.open(this.map, this);
+        }
+        else {
+            infobox._markerId = null;
+        }
     };
     
     var addMarkers = function(data, icon) {
@@ -86,10 +91,11 @@ define(["./gmaps.infobox"], function(____) {
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(place.latlong[0], place.latlong[1]),
                 icon: ""+icon,
-                _extraPlaceData: place
+                _extraPlaceData: place,
+                _id: iterator
             });
             markers.push(marker);
-            google.maps.event.addListener(marker, 'click', openMarkerInfo);
+            google.maps.event.addListener(marker, 'click', onClickMarker);
             
             iterator++;
             if(iterator < data.length) setTimeout(add, 400);
