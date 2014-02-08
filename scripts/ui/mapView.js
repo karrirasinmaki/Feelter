@@ -1,4 +1,4 @@
-define(["./gmaps.infobox", "mapMarks"], function(____, mapData) {
+define(["./gmaps.infobox"], function(____) {
     
     var helsinki = {latlong: [60.1733244, 24.9410248]};
     
@@ -8,8 +8,7 @@ define(["./gmaps.infobox", "mapMarks"], function(____, mapData) {
         view,
         map,
         markers = [],
-        infobox,
-        places = mapData.getPlaces();
+        infobox;
     
     var getInfoBoxTemplate = function(titleText, bodyText, lat, long) {
         var div = document.createElement("div"),
@@ -51,9 +50,9 @@ define(["./gmaps.infobox", "mapMarks"], function(____, mapData) {
         infobox.open(this.map, this);
     };
     
-    var addMarkers = function() {
-        for(var i=0; i<places.length; ++i) {
-            var place = places[i];
+    var addMarkers = function(data) {
+        for(var i=0; i<data.length; ++i) {
+            var place = data[i];
             var marker = new google.maps.Marker({
                 map: map,
                 animation: google.maps.Animation.DROP,
@@ -76,12 +75,15 @@ define(["./gmaps.infobox", "mapMarks"], function(____, mapData) {
         };
         map = new google.maps.Map(area, mapOptions);
         google.maps.event.addListener(map, 'click', closeInfoBox);
-        
-        addMarkers();
+    };
+    
+    var refresh = function(_places) {
+        addMarkers(_places);  
     };
     
     return {
-        init: init
+        init: init,
+        refresh: refresh
     }
     
 });

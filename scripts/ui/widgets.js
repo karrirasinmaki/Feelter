@@ -1,28 +1,42 @@
 define(function() {
     
-    var topBar = function(params) {
+    var superWidget = function(el, params) {
         params = params || {};
+        if(params.innerHTML) el.innerHTML = params.innerHTML;
+        if(params.textContent) el.textContent = params.textContent;
+        if(params.className) el.className += " "+params.className;
+        el.onclick = params.onclick;
+    };
+    
+    var box = function(params) {
         var div = document.createElement("div");
-        div.className = "topbar";
-        div.innerHTML = params.innerHTML || "";
+        div.className = "box";
+        
+        superWidget(div, params);
         return div;
     };
     
-    var infoButton = function(text, params) {
-        params = params || {};
+    var topBar = function(params) {
+        var div = document.createElement("div");
+        div.className = "topbar";
+        
+        superWidget(div, params);
+        return div;
+    };
+    
+    var infoButton = function(params) {
         var button = document.createElement("button");
         button.className = "infobutton";
-        button.textContent = text;
         
-        button.onclick = params.onclick;
-        
+        superWidget(button, params);
         return button;
     };
     
-    var infoBox = function(innerHTML) {
+    var infoBox = function(params) {
         var div = document.createElement("div");
         div.className = "infobox";
-        div.innerHTML = innerHTML;
+        
+        superWidget(div, params);
         return div;
     }
     
@@ -52,9 +66,16 @@ define(function() {
     };
     
     return {
+        box: box,
         topBar: topBar,
         infoButton: infoButton,
         infoBox: infoBox,
+        
+        hasClass: hasClass,
+        addClass: addClass,
+        removeClass: removeClass,
+        toggleClass: toggleClass,
+        
         hide: hide,
         show: show,
         toggleVisibility: toggleVisibility

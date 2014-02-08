@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MetroCoffee</title>
+        <title>Awe & Some Coffee</title>
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUD8rfbNhw79_mdKW8wwkL-9pltRmZJvc&sensor=true"></script>
         <script data-main="scripts/main" src="scripts/require.js"></script>
@@ -28,6 +28,7 @@
                 overflow: hidden;
                 background: #5f92ff;
                 color: #fff;
+                z-index: 10;
             }
             .guidebutton, .infobutton {
                 border: none;
@@ -35,6 +36,10 @@
                         
             .topbar {
                 font-size: 1.6em;
+                line-height: 1.2em;
+            }
+            .topbar .right {
+                line-height: 3.6em;
             }
             .topbar:after {
                 content: "";
@@ -79,6 +84,45 @@
                 right: 0;
                 bottom: 0;
                 padding: 3em 2em;
+            }
+            
+            .filters {
+                overflow: hidden;
+                text-align: center;
+            }
+            .filteritem {
+                position: relative;
+                float: left;
+                width: 33%;
+                height: 7em;
+                border: 1px solid #fff;
+                border-top: none;
+                border-left: none;
+                cursor: pointer;
+            }
+            .filteritem:hover {
+                background: rgba(255,255,255,0.1);
+            }
+            .filteritem:nth-last-child(-n+3) {
+                border-bottom: none;
+            }
+            .filteritem:nth-child(3n) {
+                border-right: none;
+            }
+            .filteritem span {
+                position: absolute;
+                bottom: 1em;
+                left: 0;
+                right: 0;
+            }
+            .filteritem.selected:after {
+                content: "x";
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 2em;
+                line-height: 5em;
+                font-weight: bold;
             }
         </style>
     </head>

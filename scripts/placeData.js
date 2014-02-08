@@ -10,9 +10,13 @@ define(function() {
             "Coffee Shot"
         ]
     };
+    var STRINGS = {
+        production_methods: "Method"
+    };
+    var FILTERS = ["production_methods"];
     
     var params = {
-        production_methods: [1,2,3,4,5,6]
+        production_methods: [0,1,2,3,4,5]
     };
     
     var places = [
@@ -26,7 +30,7 @@ define(function() {
             name: "mBar",
             latlong: [60.170544, 24.936228],
             info: "Only second best coffee",
-            production_methods: [5, 6]
+            production_methods: [5, 0]
         }
     ];
     
@@ -56,6 +60,9 @@ define(function() {
     };
     
     return {
+        FILTERS: FILTERS,
+        VALUES: VALUES,
+        STRINGS: STRINGS,
         params: params,
         getPlaces: getPlaces
     };

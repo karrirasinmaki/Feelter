@@ -1,4 +1,4 @@
-define(["./mapView"], function(mapView) {
+define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, filterView) {
     
     var context;
     
@@ -11,23 +11,36 @@ define(["./mapView"], function(mapView) {
         var body = document.getElementsByTagName("body")[0];
         var area = document.createElement("div");
             area.id = "canvas";
+        
         var topbar = wdg.topBar({
-            innerHTML: '<div class="left">HELSINKI<br>COFFEE<br>MAP</div><div class="right">Find the best brew!</div>'
+            innerHTML: '<div class="left">HELSINKI<br>COFFEE<br>MAP</div><div class="right">Find the best brew!</div>',
+            onclick: function() {
+                
+            }
         });
-        var infoBox = wdg.infoBox(INFO_BOX_TEXT);
+        
+        var filterBox = filterView.generate(placeData);
+        
+        var infoBox = wdg.infoBox({
+            innerHTML: INFO_BOX_TEXT
+        });
         wdg.hide(infoBox);
-        var infoButton = wdg.infoButton("i", {
+        
+        var infoButton = wdg.infoButton({
+            textContent: "i",
             onclick: function() {
                 wdg.toggleVisibility(infoBox);
             }
         });
         
         body.appendChild(topbar);
+        body.appendChild(filterBox);
         body.appendChild(area);
         body.appendChild(infoBox);
         body.appendChild(infoButton);
         
         mapView.init(context, area);
+        mapView.refresh(placeData.getPlaces());
     };
     
     return {
