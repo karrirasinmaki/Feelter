@@ -1,62 +1,47 @@
-define(function() {
+define(["mapMarks"], function(places) {
     
+    var helsinki = {latlong: [60.1733244, 24.9410248]};
+        
     var context,
         view,
-        innerView,
-        images = {};
+        map,
+        markers = [];
     
-    var x = 0,
-        y = 0,
-        dx = 0,
-        dy = 0,
-        scale = 1,
-        dscale = 1,
-        rotation = 0,
-        drotation = 0;
-    
-    var update = function() {
-        innerView.style.webkitTransform = "translate("+x+"px,"+y+"px) scale("+scale+") rotate("+rotation+"deg)";
+    var openMarkerInfo = function(event) {
+        var infowindow = new google.maps.InfoWindow({
+            content: this._extraPlaceData.name
+        });
+        infowindow.open(this.map, this);
     };
     
-    var transform = function(e) {
-        var g = e.gesture;
-        scale -= dscale - g.scale;
-        dscale = g.scale;
-        
-        rotation -= drotation - g.rotation;
-        drotation = g.rotation;
-        update();
-    };
-    var move = function(e) {
-        var g = e.gesture;
-        x -= dx - g.deltaX;
-        y -= dy - g.deltaY;
-        
-        dx = g.deltaX;
-        dy = g.deltaY;
-        update();
-    };
-    var release = function(e) {
-        dx = 0;
-        dy = 0;
-        dscale = 1;
-        drotation = 0;
+    var addMarkers = function() {
+        for(var i=0; i<places.length; ++i) {
+            var place = places[i];
+            var marker = new google.maps.Marker({
+                map: map,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(place.latlong[0], place.latlong[1]),
+                _extraPlaceData: place
+            });
+            markers.push(marker);
+            google.maps.event.addListener(marker, 'click', openMarkerInfo);
+        }
     };
     
     var init = function(ctx, area) {
         context = ctx;
         view = area;
-        innerView = document.createElement("div");
         
-        images.map = context.utils.load.img("img/map.svg");
+        area.style.height = "100%";
+        var mapOptions = {
+            center: new google.maps.LatLng(helsinki.latlong[0], helsinki.latlong[1]),
+            zoom: 15
+        };
+        map = new google.maps.Map(area, mapOptions);
         
-        var hammerZoom = context.Hammer(view).on("transform", transform);
-        var hammerMove = context.Hammer(view).on("drag", move);
-        var hammerRelease = context.Hammer(view).on("release", release);
+        addMarkers();
     };
     var draw = function() {
-        view.appendChild(innerView);
-        innerView.appendChild(images.map);
     };
     
     return {

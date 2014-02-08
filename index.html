@@ -3,6 +3,7 @@
     <head>
         <title>MetroCoffee</title>
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUD8rfbNhw79_mdKW8wwkL-9pltRmZJvc&sensor=true"></script>
         <script data-main="scripts/main" src="scripts/require.js"></script>
         
         <style>
@@ -11,8 +12,22 @@
                 height: 100%;
             }
             body {
+                margin: 0;
                 overflow: hidden;
                 -webkit-touch-callout: none !important;
+            }
+            
+            .topbar {
+                background: #bf004a;
+            }
+            .topbar:after {
+                content: "";
+                width: 0; 
+                height: 0; 
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                
+                border-top: 20px solid #bf004a;
             }
         </style>
     </head>
