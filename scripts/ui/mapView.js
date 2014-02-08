@@ -62,18 +62,24 @@ define(["./gmaps.infobox"], function(____) {
     
     var addMarkers = function(data, icon) {
         icon = icon || "img/circle.png";
-        for(var i=0; i<data.length; ++i) {
-            var place = data[i];
+        
+        var iterator = 0;
+        function add() {
+            var place = data[iterator];
             var marker = new google.maps.Marker({
                 map: map,
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(place.latlong[0], place.latlong[1]),
-                icon: icon,
+                icon: ""+icon,
                 _extraPlaceData: place
             });
             markers.push(marker);
             google.maps.event.addListener(marker, 'click', openMarkerInfo);
+            
+            iterator++;
+            if(iterator < data.length) setTimeout(add, 300);
         }
+        add();
     };
     var removeAllMarkers = function() {
         for(var i=0, l=markers.length; i<l; ++i) {
