@@ -12,6 +12,7 @@
                 height: 100%;
             }
             body {
+                font-family: 'nexa_lightregular';
                 margin: 0;
                 overflow: hidden;
                 -webkit-touch-callout: none !important;
@@ -20,14 +21,21 @@
                 display: none;
             }
             
+            .left { float: left; }
+            .right { float: right; }
+            
             .topbar, .infobox, .map-infobox, .infobutton {
+                overflow: hidden;
                 background: #5f92ff;
                 color: #fff;
             }
             .guidebutton, .infobutton {
                 border: none;
             }
-            
+                        
+            .topbar {
+                font-size: 1.6em;
+            }
             .topbar:after {
                 content: "";
                 width: 0; 

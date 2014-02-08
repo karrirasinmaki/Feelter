@@ -1,8 +1,10 @@
 define(function() {
     
-    var topBar = function() {
+    var topBar = function(params) {
+        params = params || {};
         var div = document.createElement("div");
         div.className = "topbar";
+        div.innerHTML = params.innerHTML || "";
         return div;
     };
     

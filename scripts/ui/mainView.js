@@ -11,7 +11,9 @@ define(["./mapView"], function(mapView) {
         var body = document.getElementsByTagName("body")[0];
         var area = document.createElement("div");
             area.id = "canvas";
-        var topbar = wdg.topBar();
+        var topbar = wdg.topBar({
+            innerHTML: '<div class="left">HELSINKI<br>COFFEE<br>MAP</div><div class="right">Find the best brew!</div>'
+        });
         var infoBox = wdg.infoBox(INFO_BOX_TEXT);
         wdg.hide(infoBox);
         var infoButton = wdg.infoButton("i", {

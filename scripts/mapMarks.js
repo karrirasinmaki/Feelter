@@ -1,7 +1,7 @@
 define(function() {
     
     var VALUES = {
-        method: [
+        production_methods: [
             "Espresso",
             "Patch-brewer",
             "Drip",
@@ -12,7 +12,7 @@ define(function() {
     };
     
     var params = {
-        method: [1,2,3,4,5,6]
+        production_methods: [1,2,3,4,5,6]
     };
     
     var places = [
@@ -30,6 +30,15 @@ define(function() {
         }
     ];
     
+    // If any of param vals found in p, return true. Else false.
+    var lookParamSet = function(p, paramSetKey) {
+        var paramSet = params[paramSetKey];
+        for(var i=0, l=paramSet.length; i<l; ++i) {
+            if(p[paramSetKey].indexOf( paramSet[i] ) !== -1) return true;
+        }
+        return false;
+    };
+    
     var getPlaces = function() {
         var out = [];
         for(var i=0, l=places.length; i<l; ++i) {
@@ -37,7 +46,7 @@ define(function() {
             
             for(var key in params) {
                 if(!params.hasOwnProperty(key)) continue;
-                if(params[key].length === VALUES[key].length) {
+                if( params[key].length === VALUES[key].length || lookParamSet(p, key) ) {
                     out.push(p);
                     break;
                 }
