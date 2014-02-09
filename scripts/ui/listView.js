@@ -52,7 +52,7 @@ define(["./widgets"], function(widgets) {
             });
             
             
-            left.innerHTML = '<strong>' + data.name + '</strong><br><div>' + parseFeatures(data, params) + '</div><div class="hideonminimized"><br><div class="address">'+data.addr+'</div><a href="tel:'+data.phone+'">'+data.phone+'</a><a href="'+data.www+'" target="_blank">'+data.www+'</a></div>';
+            left.innerHTML = '<strong>' + data.name + '</strong><br><div>' + parseFeatures(data, params) + '</div><div class="hideonminimized"><br><div class="address">'+data.addr+'</div><a href="tel:'+data.phone+'">'+data.phone+'</a><a href="'+data.www+'" target="_blank">'+data.www+'</a><div><br>'+data.open+'</div></div>';
             
             var guideButton = document.createElement("a");
             guideButton.className = "guidebutton";
