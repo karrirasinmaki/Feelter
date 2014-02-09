@@ -18,7 +18,11 @@ define(["utils/utils", "loadPlaces"], function(utils, loadPlaces) {
             "Micro Roasteries", // 0
             "Johan & Nyström", // 1
             "Kaffa Roastery", // 2
-            "Caffi" // 3
+            "Caffi", // 3
+            "Others", // 4
+            "Helsingin Kahvipaahtimo", // 5
+            "Kaffe Obscura", // 6
+            "Maja Coffee" // 7
         ],
         foods: [
             "Breakfast", // 0

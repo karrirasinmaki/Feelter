@@ -40,7 +40,7 @@ define(["./gmaps.infobox"], function(____) {
         guideButton.target = "_blank";
         guideButton.textContent = GUIDE_BUTTON_TEXT;
         
-        theBody.innerHTML = '<div class="phone">'+data.phone+'</div><div class="email">'+data.email+'</div>';
+        theBody.innerHTML = '<div class="address">'+data.addr+'</div><a href="tel:'+data.phone+'">'+data.phone+'</a><a href="'+data.www+'" target="_blank">'+data.www+'</a>';
         
         div.appendChild(title);
         div.appendChild(guideButton);

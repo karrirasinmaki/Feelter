@@ -204,13 +204,18 @@ button {
     font-size: initial;
     padding: 1em 0.5em;
 }
+.map-infobox a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
 
 .guidebutton {
     display: inline-block;
     width: 100%;
     line-height: 3em;
     background: #fff;
-    color: #5f92ff;
+    color: #5f92ff!important;
     font-style: italic;
     font-size: larger;
     text-decoration: none;
