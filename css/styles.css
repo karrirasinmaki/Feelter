@@ -167,6 +167,13 @@ button {
     top: 0;
 }
 
+#tweet-button {
+    position: absolute;
+    left: 1em;
+    bottom: 0.5em;
+    z-index: 10;
+}
+
 .map-infobox {
     text-align: center;
     font-size: initial;
@@ -186,12 +193,12 @@ button {
 
 .infobutton {
     position: absolute;
-    bottom: 1em;
-    right: 1em;
+    bottom: 0.5em;
+    right: 0.5em;
     width: 1.5em;
     height: 1.5em;
     line-height: 1.5em;
-    border-radius: 50% 50%;
+    border-radius: 1.5em 1.5em;
     font-size: 2em;
     text-align: center;
 }
