@@ -7,14 +7,40 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="57.3125"
+   height="40.34375"
+   id="svg3124"
    version="1.1"
-   width="58.6875"
-   height="41.84375"
-   id="svg3154">
+   inkscape:version="0.48.4 r"
+   sodipodi:docname="New document 2">
   <defs
-     id="defs3156" />
+     id="defs3126" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="323.65275"
+     inkscape:cy="-199.82275"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="467"
+     inkscape:window-height="419"
+     inkscape:window-x="670"
+     inkscape:window-y="149"
+     inkscape:window-maximized="0" />
   <metadata
-     id="metadata3159">
+     id="metadata3129">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -26,63 +52,37 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-345.6525,-511.44568)"
-     id="layer1">
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-51.347248,-292.19568)">
     <g
-       transform="translate(-204.2225,468.94568)"
-       id="g79">
+       transform="translate(16.753498,-592.80432)"
+       id="g111">
       <line
          style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
          stroke-miterlimit="10"
-         x1="608.55603"
-         y1="81.833"
-         x2="551.22198"
-         y2="81.833"
-         id="line81" />
+         x1="91.913002"
+         y1="922.83301"
+         x2="34.580002"
+         y2="922.83301"
+         id="line113" />
       <line
          style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
          stroke-miterlimit="10"
-         x1="551.88898"
-         y1="64.167"
-         x2="607.88898"
-         y2="64.167"
-         id="line83" />
+         x1="35.247002"
+         y1="905.16699"
+         x2="91.247002"
+         y2="905.16699"
+         id="line115" />
       <line
          style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
          stroke-miterlimit="10"
-         x1="607.88898"
-         y1="46.5"
-         x2="551.88898"
-         y2="46.5"
-         id="line85" />
-    </g>
-    <g
-       transform="translate(-204.2225,468.94568)"
-       id="g87">
-      <line
-         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
-         stroke-miterlimit="10"
-         x1="607.22198"
-         y1="80.333"
-         x2="549.88898"
-         y2="80.333"
-         id="line89" />
-      <line
-         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
-         stroke-miterlimit="10"
-         x1="550.55603"
-         y1="62.667"
-         x2="606.55603"
-         y2="62.667"
-         id="line91" />
-      <line
-         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
-         stroke-miterlimit="10"
-         x1="606.55603"
-         y1="45"
-         x2="550.55603"
-         y2="45"
-         id="line93" />
+         x1="91.247002"
+         y1="887.5"
+         x2="35.247002"
+         y2="887.5"
+         id="line117" />
     </g>
   </g>
 </svg>
