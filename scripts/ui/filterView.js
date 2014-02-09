@@ -17,7 +17,7 @@ define(["./widgets"], function(widgets) {
     var inner = widgets.box({className: "blue inner"});
     var scrollArea = widgets.box({className: "scroll"});
     var topBar = widgets.box({className: "title"});
-    var filters = widgets.box({className: "filters"});
+    var pageWrapper = widgets.box({className: "page-wrapper"});
     var bottomBar = widgets.box({className: "bottom"});
     
     var addFiltersTo = function(to, data, selected, key) {
@@ -81,11 +81,12 @@ define(["./widgets"], function(widgets) {
             
             /* Page */
             var newPage = widgets.box({
-                className: "page id-"+i
+                className: "filters page id-"+i
             });
+            console.log(data);
             addFiltersTo(newPage, data.VALUES[k], data.params[k], k);
             
-            filters.appendChild(newPage);
+            pageWrapper.appendChild(newPage);
             if(i > 0) widgets.hide(newPage);
             
             /* BottomBar */
@@ -112,7 +113,7 @@ define(["./widgets"], function(widgets) {
         topBar.innerHTML = "<strong>"+FILTER_BOX_FANCY_TITLE+"</strong><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
         
         scrollArea.appendChild(topBar);
-        scrollArea.appendChild(filters);
+        scrollArea.appendChild(pageWrapper);
         inner.appendChild(scrollArea);
         inner.appendChild(bottomBar);
         container.appendChild(arrowWrapper);

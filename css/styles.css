@@ -258,7 +258,7 @@ button {
     overflow: hidden;
     text-align: center;
 }
-.filters .page {
+.page {
     -webkit-animation-duration: 0.5s;
 }
 .filteritem {
@@ -273,10 +273,10 @@ button {
 .filteritem:hover {
     background: rgba(255,255,255,0.1);
 }
-.filteritem:nth-last-child(-n+3) {
+.filters .filteritem:nth-last-child(-n+3) {
     border-bottom: none;
 }
-.filteritem:nth-child(3n) {
+.filters .filteritem:nth-child(3n) {
     border-right: none;
 }
 .filteritem span {

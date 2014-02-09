@@ -63,7 +63,9 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         //area.style.top = topbar.offsetHeight + "px";
         
         mapView.init(context, area);
-        mapView.refresh(placeData.getPlaces());
+        placeData.load(function() {
+            mapView.refresh(placeData.getPlaces());
+        });
     };
     
     return {

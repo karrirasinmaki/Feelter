@@ -112,7 +112,7 @@ define(["./gmaps.infobox"], function(____) {
             google.maps.event.addListener(marker, 'click', onClickMarker);
             
             iterator++;
-            if(iterator < data.length) setTimeout(add, 400);
+            if(iterator < data.length) setTimeout(add, 100);
         }
         add();
     };

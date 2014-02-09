@@ -1,55 +1,65 @@
-define(function() {
+define(["utils/utils", "loadPlaces"], function(utils, loadPlaces) {
+    
+    var places = {};
     
     var VALUES = {
-        production_methods: [
-            "Espresso",
-            "Patch-brewer",
-            "Drip",
-            "AeroPress",
-            "Chemex",
-            "Coffee Shot"
+        productionmethods: [
+            "Espresso", // 0
+            "Patch Brew", // 1
+            "Drip", // 2
+            "AeroPress", // 3
+            "Chemex", // 4
+            "Coffee Shot", // 5
+            "French Press", // 6
+            "Sifon", // 7
+            "V60" // 8
+        ],
+        coffees: [
+            "Micro Roasteries", // 0
+            "Johan & Nyström", // 1
+            "Kaffa Roastery", // 2
+            "Caffi" // 3
+        ],
+        foods: [
+            "Breakfast", // 0
+            "Chocolate", // 1
+            "Pastry", // 2
+            "Ice Cream", // 3
+            "Lunch", // 4
+            "Salad", // 5
+            "Brunch" // 6
         ],
         services: [
-            "WiFi"
+            "WiFi", // 0
+            "Magazines", // 1
+            "Educations" // 2
         ]
     };
     var STRINGS = {
-        production_methods: "Method",
+        productionmethods: "Method",
+        coffees: "Coffee",
+        foods: "Food",
         services: "Services"
     };
-    var FILTERS = ["production_methods", "services"];
+    var FILTERS = ["productionmethods", "coffees", "foods", "services"];
     
     var params = {
-        production_methods: [true,true,true,true,true,true],
-        services: [true]
+        productionmethods: utils.newArray(VALUES.productionmethods.length, true),
+        coffees: utils.newArray(VALUES.coffees.length, true),
+        foods: utils.newArray(VALUES.foods.length, true),
+        services: utils.newArray(VALUES.services.length, true)
     };
     
     // Count of how many places serves like Espresso
     var statistics = {};
     
-    var places = [
-        {
-            name: "Awe & Some Coffee",
-            phone: "000 000 000",
-            email: "awesome@gmail.com",
-            latlong: [60.1733244, 24.9410248],
-            production_methods: [1, 3, 4]
-        },
-        {
-            name: "mBar",
-            phone: "122 332 221",
-            email: "mbar@mbar.fi",
-            latlong: [60.170544, 24.936228],
-            production_methods: [5, 0]
-        }
-    ];
-    
     // If any of param vals found in p, return true. Else false.
-    // Paramsetkey could be like "production_methods"
+    // Paramsetkey could be like "productionmethods"
     var lookParamSet = function(p, paramSetKey) {
+        /* paramSet has array full of true/false vars */
         var paramSet = params[paramSetKey];
         for(var i=0, l=paramSet.length; i<l; ++i) {
-            if(paramSet[i] && p[paramSetKey] && p[paramSetKey].indexOf( i ) !== -1) return true;
+            if(paramSet[i] && p[paramSetKey] && p[paramSetKey].indexOf( ""+i ) !== -1) return true;
         }
         return false;
     };
@@ -59,8 +69,10 @@ define(function() {
         for(var i=0, l=places.length; i<l; ++i) {
             var p = places[i];
             
+            /* Check if place has any of filters */
             for(var key in params) {
                 if(!params.hasOwnProperty(key)) continue;
+                /* If found one, add to list and continue to next place */
                 if( lookParamSet(p, key) ) {
                     out.push(p);
                     break;
@@ -70,19 +82,11 @@ define(function() {
         return out;
     };
     
-    var countStatistics = function() {
-        function mapp(o) {
-            for(var k in o) {
-                if(!o.hasOwnProperty(k)) continue;
-                statistics[k] = {};
-                mapp(o[k]);
-            }
-        }
-        mapp(VALUES);
-        
-        for(var i=0, l=places.length; i<l; ++i) {
-            //TODO
-        }
+    var load = function(callback) {
+        loadPlaces(function(data) {
+            places = data;
+            callback();
+        });
     };
     
     return {
@@ -90,7 +94,8 @@ define(function() {
         VALUES: VALUES,
         STRINGS: STRINGS,
         params: params,
-        getPlaces: getPlaces
+        getPlaces: getPlaces,
+        load: load
     };
     
 });

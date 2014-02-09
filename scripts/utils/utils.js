@@ -17,8 +17,17 @@ define(function() {
         return img;
     };
     
+    var newArray = function(length, placeholder) {
+        var a = [];
+        for(var i=0; i<length; ++i) {
+            a[i] = placeholder;
+        }
+        return a;
+    };
+    
     return {
         log: log,
+        newArray: newArray,
         load: {
             css: loadCss,
             img: loadImage
