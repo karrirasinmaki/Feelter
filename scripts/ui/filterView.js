@@ -23,7 +23,7 @@ define(["./widgets"], function(widgets) {
         for(var i=0, l=data.length; i<l; ++i) {
             var d = data[i];
             var filtersItem = widgets.box({
-                innerHTML: "<span><b>" + d + "</b></span>",
+                innerHTML: "<span><strong>" + d + "</strong></span>",
                 className: "filteritem",
                 onclick: function(e) {
                     if(this._selected) {
@@ -53,12 +53,23 @@ define(["./widgets"], function(widgets) {
         }
     };
     
-    var showPage = function(page) {
+    var showPageByButton = function(button) {
+        var page = button._pageAttached
+        widgets.addClass(button, "selected");
         widgets.removeClass(page, "flipOutX");
         widgets.show(page);
         widgets.addClass(page, "flipInX");
-        bottomBar._pageShowing = page;
-    }
+        bottomBar._selectedButton = button;
+    };
+    /* Hide old selected, show current */
+    var hideShowPageByButton = function(button, toShow) {
+        widgets.addClass(button._pageAttached, "flipOutX");
+        setTimeout(function() {
+            widgets.removeClass(button, "selected");
+            widgets.hide(button._pageAttached);
+            showPageByButton(toShow);
+        }, 100);
+    };
     
     var generate = function(params) {
         var data = params.data || {};
@@ -67,36 +78,37 @@ define(["./widgets"], function(widgets) {
         for(var i=0, l=data.FILTERS.length; i<l; ++i) {
             var k = data.FILTERS[i];
             
+            /* Page */
             var newPage = widgets.box({
                 className: "page id-"+i
             });
             addFiltersTo(newPage, data.VALUES[k], data.params[k], k);
             
             filters.appendChild(newPage);
-            widgets.hide(newPage);
+            if(i > 0) widgets.hide(newPage);
             
+            /* BottomBar */
             var bottomBarItem = widgets.button({
-                textContent: data.STRINGS[k],
+                innerHTML: "<strong>"+data.STRINGS[k]+"</strong>",
                 onclick: function() {
-                    if(bottomBar._pageShowing) {
-                        widgets.addClass(bottomBar._pageShowing, "flipOutX");
-                        var el = bottomBar._pageShowing;
-                        var toShow = this._pageAttached;
-                        setTimeout(function() {
-                            widgets.hide(el);
-                            showPage(toShow);
-                        }, 100);
+                    if(bottomBar._selectedButton) {
+                        hideShowPageByButton(bottomBar._selectedButton, this);
                     }
-                    else showPage(this._pageAttached);
+                    else showPageByButton(this);
                 },
                 _pageAttached: newPage
             });
             bottomBar.appendChild(bottomBarItem);
+            
+            if(i === 0) {
+                bottomBar._selectedButton = bottomBarItem;
+                showPageByButton(bottomBarItem);
+            }
         }
         
         if(params.onhide) arrowWrapper.onclick = params.onhide;
         
-        topBar.innerHTML = "<b>"+FILTER_BOX_FANCY_TITLE+"</b><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
+        topBar.innerHTML = "<strong>"+FILTER_BOX_FANCY_TITLE+"</strong><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
         
         inner.appendChild(topBar);
         inner.appendChild(filters);
