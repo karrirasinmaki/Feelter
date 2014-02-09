@@ -10,11 +10,14 @@ define(["./widgets"], function(widgets) {
     };
     
     var container = widgets.box();
-    widgets.addClass(container, "infobox");
     container.style.zIndex = 11;
+    var arrowWrapper = widgets.box({className: "arrow-wrapper"});
+    arrowWrapper.className = "arrow-wrapper";
+    arrowWrapper.innerHTML = "<span class='arrow-top'></span>";
+    var inner = widgets.box({className: "blue inner"});
     var topBar = widgets.box({className: "title"});
     var filters = widgets.box({className: "filters"});
-    var bottomBar = widgets.box();
+    var bottomBar = widgets.box({className: "bottom"});
     
     var addFiltersTo = function(to, data, selected, key) {
         for(var i=0, l=data.length; i<l; ++i) {
@@ -50,6 +53,13 @@ define(["./widgets"], function(widgets) {
         }
     };
     
+    var showPage = function(page) {
+        widgets.removeClass(page, "flipOutX");
+        widgets.show(page);
+        widgets.addClass(page, "flipInX");
+        bottomBar._pageShowing = page;
+    }
+    
     var generate = function(params) {
         var data = params.data || {};
         onChangeListener = params.onchange;
@@ -63,25 +73,36 @@ define(["./widgets"], function(widgets) {
             addFiltersTo(newPage, data.VALUES[k], data.params[k], k);
             
             filters.appendChild(newPage);
-            widgets.animate.slideDown(newPage, function() {
-                widgets.toggleClass(newPage, "slidden");
-            }, 1);
+            widgets.hide(newPage);
             
-            var bottomBarItem = widgets.box({
+            var bottomBarItem = widgets.button({
                 textContent: data.STRINGS[k],
                 onclick: function() {
-                    widgets.animate.slideHide(this._pageAttached);
+                    if(bottomBar._pageShowing) {
+                        widgets.addClass(bottomBar._pageShowing, "flipOutX");
+                        var el = bottomBar._pageShowing;
+                        var toShow = this._pageAttached;
+                        setTimeout(function() {
+                            widgets.hide(el);
+                            showPage(toShow);
+                        }, 100);
+                    }
+                    else showPage(this._pageAttached);
                 },
                 _pageAttached: newPage
             });
             bottomBar.appendChild(bottomBarItem);
         }
         
+        if(params.onhide) arrowWrapper.onclick = params.onhide;
+        
         topBar.innerHTML = "<b>"+FILTER_BOX_FANCY_TITLE+"</b><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
         
-        container.appendChild(topBar);
-        container.appendChild(filters);
-        container.appendChild(bottomBar);
+        inner.appendChild(topBar);
+        inner.appendChild(filters);
+        inner.appendChild(bottomBar);
+        container.appendChild(arrowWrapper);
+        container.appendChild(inner);
         return container;
     };
     

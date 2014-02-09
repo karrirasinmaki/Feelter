@@ -3,6 +3,7 @@ html, body {
     height: 100%;
 }
 body {
+    position: relative;
     font-family: 'nexa_lightregular';
     margin: 0;
     overflow: hidden;
@@ -29,11 +30,11 @@ body {
     font-size: 1.5em;
 }
 
-.topbar, button, .filteritem {
+.topbar, button, .filteritem, .arrow-wrapper {
     cursor: pointer;
 }
 
-.topbar, .infobox, .map-infobox, .infobutton {
+.topbar, .infobox, .map-infobox, .infobutton, .blue {
     overflow: hidden;
     background: #5f92ff;
     color: #fff;
@@ -88,9 +89,40 @@ body {
     
     border-top: 30px solid #5f92ff;
 }
+.arrow-top {                
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    
+    border-bottom: 30px solid #5f92ff;
+    
+    position: relative;
+    top: 2px;
+}
+
+#topbar {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
 
 #filterbox {
-    bottom: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100%;
+    height: 100%;
+    bottom: auto;
+    box-sizing: border-box;
+}
+#filterbox .arrow-wrapper {
+    height: 5%;
+}
+#filterbox .inner {
+    height: 95%;
 }
 
 #themap {
@@ -100,6 +132,10 @@ body {
     right: 0;
     bottom: 0;
     height: auto!important;
+    transition: top 0.5s;
+}
+#themap.slidden {
+    top: 0;
 }
 
 .map-infobox {
@@ -136,7 +172,15 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.infobox, .inner {
     padding: 3em 2em;
+    box-sizing: border-box;
+}
+.inner .bottom, .infobox .bottom {
+    position: absolute;
+    bottom: 3em;
 }
 
 .filters {
@@ -145,7 +189,7 @@ body {
     text-align: center;
 }
 .filters .page {
-    /* TODO */
+    -webkit-animation-duration: 0.5s;
 }
 .filteritem {
     position: relative;
@@ -190,9 +234,6 @@ body {
         font-size: 1em;
         line-height: 1em;
         height: 3em;
-    }
-    .topbar:after {
-        top: 4em;
     }
     #themap {
         top: 3em;

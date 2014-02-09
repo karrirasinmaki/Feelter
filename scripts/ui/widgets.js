@@ -16,20 +16,33 @@ define(function() {
         return div;
     };
     
+    var button = function(params) {
+        var btn = document.createElement("button");
+        superWidget(btn, params);
+        
+        return btn;
+    };
+    
     var topBar = function(params) {
         var div = document.createElement("div");
-        superWidget(div, params);
-        div.className += " topbar";
+        var inner = document.createElement("div");
+        var arrowWrapper = document.createElement("div");
+        superWidget(inner, params);
+        inner.className += " topbar";
+        
+        arrowWrapper.className = "arrow-wrapper";
+        arrowWrapper.innerHTML = "<span class='arrow-down'></span>";
+        div.appendChild(inner);
+        div.appendChild(arrowWrapper);
         
         return div;
     };
     
     var infoButton = function(params) {
-        var button = document.createElement("button");
-        superWidget(button, params);
-        button.className += " infobutton";
+        var btn = button(params);
+        btn.className += " infobutton";
         
-        return button;
+        return btn;
     };
     
     var infoBox = function(params) {
@@ -75,27 +88,37 @@ define(function() {
             else if(el.style.msTransform !== undefined) el.style.msTransform = command;
             else if(el.style.mozTransform !== undefined) el.style.mozTransform = command;
         },
+        slideTo: function(el, y, callback, duration) {
+            duration = duration || 700;
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, "+y+"px)" );
+            setTimeout(callback, duration);
+        },
         slideUp: function(el, callback, duration) {
             duration = duration || 700;
             var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
             el.style.transition = (duration/1000) + "s all";
-            animate.setTransform( el, "translate(0px, "+to+")" );
-            animate.setTransform( el, "translate(0px, 0px)" );
+            animate.setTransform( el, "translate(0px, -"+to+")" );
             setTimeout(callback, duration);
         },
         slideDown: function(el, callback, duration) {
             duration = duration || 700;
             var to = el.offsetHeight > 0 ? el.offsetHeight+"px" : "100%";
             el.style.transition = (duration/1000) + "s all";
-            animate.setTransform( el, "translate(0px, 0px)" );
             animate.setTransform( el, "translate(0px, "+to+")" );
+            setTimeout(callback, duration);
+        },
+        slideBack: function(el, callback, duration) {
+            duration = duration || 700;
+            el.style.transition = (duration/1000) + "s all";
+            animate.setTransform( el, "translate(0px, 0px)" );
             setTimeout(callback, duration);
         },
         slideHide: function(el) {
             if( !hasClass(el, "slidden") ) animate.slideDown(el, function() {
                 toggleClass(el, "slidden");
             }, 500);
-            else animate.slideUp(el, function() {
+            else animate.slideBack(el, function() {
                 toggleClass(el, "slidden");
             }, 500);
         },
@@ -103,14 +126,24 @@ define(function() {
             if( !hasClass(el, "slidden") ) animate.slideUp(el, function() {
                 toggleClass(el, "slidden");
             }, 500);
-            else animate.slideDown(el, function() {
+            else animate.slideBack(el, function() {
                 toggleClass(el, "slidden");
             }, 500);
+        },
+        slideToggle: function(el, y, duration) {
+            duration = duration || 700;
+            if( !hasClass(el, "slidden") ) animate.slideTo(el, y, function() {
+                toggleClass(el, "slidden");
+            }, duration);
+            else animate.slideBack(el, function() {
+                toggleClass(el, "slidden");
+            }, duration);
         }
     };
     
     return {
         box: box,
+        button: button,
         topBar: topBar,
         infoButton: infoButton,
         infoBox: infoBox,
