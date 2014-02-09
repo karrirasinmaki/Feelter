@@ -3,11 +3,21 @@
     <head>
         <title>Awe & Some Coffee</title>
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- iOS safari -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
         <link rel="stylesheet" href="css/styles.css">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUD8rfbNhw79_mdKW8wwkL-9pltRmZJvc&sensor=true"></script>
         <script data-main="scripts/main" src="scripts/require.js"></script>
     </head>
 <body>
+    
+    <div id="splashscreen">
+        <span class="animated pulse">
+            Awe & Some Coffee<br>
+            . . .
+        </span>
+    </div>
     
     <div id="tweet-button">
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ss14-team-272.divshot.io" data-text="Check out Awe & Some Coffee by Rasinmäki & Rasinmäki" data-via="staticshowdown">Tweet</a>

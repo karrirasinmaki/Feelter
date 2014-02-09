@@ -32,6 +32,10 @@ button {
 .left { float: left; }
 .right { float: right; }
 
+.scroll {
+    -webkit-overflow-scrolling: touch;
+}
+
 .box {
     overflow: hidden;
     box-sizing: border-box;
@@ -109,6 +113,26 @@ button {
     bottom: 0;
 }
 
+#splashscreen {
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #5f92ff;
+    color: #fff;
+    text-align: center;
+}
+#splashscreen span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -1em;
+    -webkit-animation-iteration-count: infinite;
+}
+
 #topbar {
     z-index: 10;
     position: absolute;
@@ -138,17 +162,18 @@ button {
     left: 0;
     right: 0;
     bottom: 3em;
+    padding-bottom: 3em;
     overflow-y: scroll;
 }
 #filterbox .bottom {
     width: 100%;
     left: 0;
+    text-align: center;
 }
 #filterbox .bottom button {
     background: none;
     border: none;
     color: inherit;
-    margin: 0 2em;
 }
 #filterbox .bottom button.selected {
     border-bottom: 3px solid #fff;
@@ -201,6 +226,7 @@ button {
     border-radius: 1.5em 1.5em;
     font-size: 2em;
     text-align: center;
+    overflow: hidden;
 }
 
 .infobox {
@@ -278,6 +304,6 @@ button {
         line-height: 3em;
     }
     #themap {
-        top: 3em;
+        top: 4em;
     }
 }
