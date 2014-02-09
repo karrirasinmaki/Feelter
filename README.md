@@ -16,6 +16,10 @@ Used libraries
 - Hammer.js - touch gestures
   - https://github.com/EightMedia/hammer.js
 
+Other tools & stuff
+-------------------
+- App uses Google Spreadsheet as storage  where is stored places shown in map
+
 Notices
 -------
 - We are using font family Nexa and it's full commercial font package. So, don't use it without license.
