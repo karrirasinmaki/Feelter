@@ -80,6 +80,9 @@ define(["./mapView", "placeData", "./filterView", "./listView"], function(mapVie
                 wdg.animate.slideHide(infoBox);
             }
         });
+        var tweetButton = document.getElementById("tweet-button");
+        wdg.removeClass(tweetButton, "hidden");
+        infoBox.appendChild(tweetButton);
         
         body.appendChild(topbar);
         body.appendChild(filterBox);

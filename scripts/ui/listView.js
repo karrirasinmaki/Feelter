@@ -33,11 +33,26 @@ define(["./widgets"], function(widgets) {
         
         for(var i=0, l=dataset.length; i<l; ++i) {
             var data = dataset[i];
-            var listItem = widgets.box({className: "listitem"});
+            var listItem = widgets.box({className: "listitem minimized"});
             var left = widgets.box({clasName: "left"});
-            var right = widgets.circleButton({clasName: "right"});
+            var right = widgets.circleButton({
+                clasName: "right",
+                innerHTML: "<span>+</span>",
+                onclick: function() {
+                    if(widgets.hasClass(this._parent, "minimized")) {
+                        widgets.removeClass(this._parent, "minimized");
+                        this.innerHTML = "<span>-</span>";
+                    }
+                    else {
+                        widgets.addClass(this._parent, "minimized");
+                        this.innerHTML = "<span>+</span>";
+                    }
+                },
+                _parent: listItem
+            });
             
-            left.innerHTML = '<strong>' + data.name + '</strong><br><div class="address">'+data.addr+'</div><a href="tel:'+data.phone+'">'+data.phone+'</a><a href="'+data.www+'" target="_blank">'+data.www+'</a><br><div>' + parseFeatures(data, params) + '</div>';
+            
+            left.innerHTML = '<strong>' + data.name + '</strong><br><div>' + parseFeatures(data, params) + '</div><div class="hideonminimized"><br><div class="address">'+data.addr+'</div><a href="tel:'+data.phone+'">'+data.phone+'</a><a href="'+data.www+'" target="_blank">'+data.www+'</a></div>';
             
             var guideButton = document.createElement("a");
             guideButton.className = "guidebutton";
@@ -45,6 +60,7 @@ define(["./widgets"], function(widgets) {
             guideButton.target = "_blank";
             guideButton.textContent = "Guide me there!";
             
+            left.appendChild(guideButton);
             listItem.appendChild(left);
             listItem.appendChild(right);
             area.appendChild(listItem);

@@ -192,6 +192,14 @@ a {
     top: 0.5em;
     right: 0.5em;
 }
+.listitem .guidebutton {
+    margin-top: 1em;
+    max-width: 300px;
+}
+
+.listitem.minimized .guidebutton, .listitem.minimized .hideonminimized {
+    display: none;
+}
 
 #filterbox {
     position: absolute;
@@ -246,10 +254,6 @@ a {
 }
 
 #tweet-button {
-    position: absolute;
-    left: 3.5em;
-    bottom: 0.5em;
-    z-index: 10;
 }
 
 .map-infobox {
@@ -275,12 +279,24 @@ a {
 }
 
 .circlebutton {
+    position: relative;
     padding: 0.75em;
     font-size: 1.5em;
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
     font-family: 'nexa_heavyregular';
+    background: #E5FFE3;
+    color: #ff7074;
+}
+.circlebutton:after, .circlebutton span {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 1.5em;
 }
 
 .infobutton {
