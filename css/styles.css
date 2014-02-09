@@ -239,6 +239,7 @@ a {
     background: none;
     border: none;
     color: inherit;
+    margin: 0;
 }
 #filterbox .bottom button.selected {
     border-bottom: 3px solid #E5FFE3;
