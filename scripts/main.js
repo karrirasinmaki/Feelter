@@ -1,7 +1,7 @@
 var MetroCoffee = (function() {
     
-    require(["utils/hammer", "utils/utils", "ui/widgets", "ui/mainView", "domReady"],
-    function(hammer,          utils,         widgets,      mainView,      domReady) {
+    require(["utils/hammer", "utils/utils", "ui/widgets", "ui/mainView", "domReady", "utils/prefixfree"],
+    function(hammer,          utils,         widgets,      mainView,      domReady,   ____) {
         
         var context = {
             Hammer: hammer,

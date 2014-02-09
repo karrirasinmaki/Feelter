@@ -27,6 +27,10 @@ define(function() {
         var div = document.createElement("div");
         var inner = document.createElement("div");
         var arrowWrapper = document.createElement("div");
+        if(params.onclick) {
+            div.onclick = params.onclick;
+            params.onclick = undefined;
+        }
         superWidget(inner, params);
         inner.className += " topbar";
         

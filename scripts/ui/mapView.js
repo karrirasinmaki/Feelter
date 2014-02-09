@@ -36,7 +36,7 @@ define(["./gmaps.infobox"], function(____) {
         title.textContent = data.name;
         
         guideButton.className = "guidebutton";
-        guideButton.href = "http://maps.google.com/maps?saddr="+userLocation.latlong.join(",")+"&daddr="+data.lat+","+data.long;
+        guideButton.href = "http://maps.google.com/maps?saddr="+userLocation.latlong.join(",")+"&daddr="+data.latlong.join(",");
         guideButton.target = "_blank";
         guideButton.textContent = GUIDE_BUTTON_TEXT;
         

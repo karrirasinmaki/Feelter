@@ -49,7 +49,6 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         }, 1);
         
         infoButton = wdg.infoButton({
-            textContent: "i",
             onclick: function() {
                 wdg.animate.slideHide(infoBox);
             }

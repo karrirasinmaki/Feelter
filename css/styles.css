@@ -220,13 +220,21 @@ button {
     position: absolute;
     bottom: 0.5em;
     right: 0.5em;
-    width: 1.5em;
-    height: 1.5em;
-    line-height: 1.5em;
-    border-radius: 1.5em 1.5em;
-    font-size: 2em;
+    padding: 0.75em;
+    font-size: 1.5em;
+    border-radius: 50%;
     text-align: center;
     overflow: hidden;
+    font-family: 'nexa_heavyregular';
+}
+.infobutton:after {
+    content: "i";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 1.5em;
 }
 
 .infobox {
@@ -290,7 +298,15 @@ button {
     text-align: center;
 }
 
-
+@media (max-height: 560px) {
+    #filterbox .arrow-wrapper {
+        padding-top: 10px;
+    }
+    #filterbox .inner {
+        position: relative;
+        height: calc(100% - 40px);
+    }
+}
 @media (max-width: 620px) {
     .title strong {
         font-size: 1em;
