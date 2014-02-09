@@ -1,12 +1,12 @@
 html, body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 body {
     position: relative;
     font-family: 'nexa_bookregular';
     margin: 0;
-    overflow: hidden;
     -webkit-touch-callout: none !important;
 }
 
@@ -18,6 +18,7 @@ strong {
 }
 i {
     font-family: 'nexa_book_italicregular';
+    font-size: 0.9em;
 }
 
 button {
@@ -73,28 +74,19 @@ button {
 .topbar .right {
     line-height: 3.6em;
 }
-.topbar:after {
-    position: absolute;
-    top: 4.6em;
-    left: 50%;
-    margin-left: -30px;
-    z-index: 11;
-    
-    content: "";
-    width: 0; 
-    height: 0; 
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    
-    border-top: 30px solid #5f92ff;
-}
 
 .arrowbox {
     -webkit-animation: 0.7s flipInY;
 }
 .arrow-wrapper {
-    padding-top: 30px;
+    position: relative;
     text-align: center;
+    height: 30px;
+}
+.arrow-down, .arrow-top {
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
 }
 .arrow-down {                
     content: "";
@@ -104,6 +96,7 @@ button {
     border-right: 30px solid transparent;
     
     border-top: 30px solid #5f92ff;
+    top. 0;
 }
 .arrow-top {                
     content: "";
@@ -113,9 +106,7 @@ button {
     border-right: 30px solid transparent;
     
     border-bottom: 30px solid #5f92ff;
-    
-    position: relative;
-    top: 2px;
+    bottom: 0;
 }
 
 #topbar {
@@ -135,14 +126,23 @@ button {
     box-sizing: border-box;
 }
 #filterbox .arrow-wrapper {
-    height: 5%;
+    padding-top: 30px;
 }
 #filterbox .inner {
     position: relative;
-    height: 95%;
+    height: calc(100% - 60px);
+}
+#filterbox .scroll {
+    position: absolute;
+    top: 3em;
+    left: 0;
+    right: 0;
+    bottom: 3em;
+    overflow-y: scroll;
 }
 #filterbox .bottom {
     width: 100%;
+    left: 0;
 }
 #filterbox .bottom button {
     background: none;
@@ -207,9 +207,9 @@ button {
     padding: 3em 2em;
     box-sizing: border-box;
 }
-.inner .bottom, .infobox .bottom {
+.box .bottom {
     position: absolute;
-    bottom: 3em;
+    bottom: 1em;
 }
 
 .filters {
@@ -259,10 +259,16 @@ button {
 
 
 @media (max-width: 620px) {
+    .title strong {
+        font-size: 1em;
+    }
     .topbar {
         font-size: 1em;
         line-height: 1em;
         height: 3em;
+    }
+    .topbar .right {
+        line-height: 3em;
     }
     #themap {
         top: 3em;

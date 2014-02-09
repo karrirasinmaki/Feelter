@@ -15,6 +15,7 @@ define(["./widgets"], function(widgets) {
     arrowWrapper.className = "arrow-wrapper";
     arrowWrapper.innerHTML = "<span class='arrow-top'></span>";
     var inner = widgets.box({className: "blue inner"});
+    var scrollArea = widgets.box({className: "scroll"});
     var topBar = widgets.box({className: "title"});
     var filters = widgets.box({className: "filters"});
     var bottomBar = widgets.box({className: "bottom"});
@@ -110,8 +111,9 @@ define(["./widgets"], function(widgets) {
         
         topBar.innerHTML = "<strong>"+FILTER_BOX_FANCY_TITLE+"</strong><i>"+FILTER_BOX_HELPER_TEXT+"</i>";
         
-        inner.appendChild(topBar);
-        inner.appendChild(filters);
+        scrollArea.appendChild(topBar);
+        scrollArea.appendChild(filters);
+        inner.appendChild(scrollArea);
         inner.appendChild(bottomBar);
         container.appendChild(arrowWrapper);
         container.appendChild(inner);
