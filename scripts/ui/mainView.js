@@ -7,8 +7,16 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
     
     var area, filterBox, topbar, infoBox, infoButton;
     
+    var placeDataChanged = false;
+    
     var showHideFilters = function() {
         var wdg = context.widgets;
+        
+        if(wdg.hasClass(filterBox, "slidden") && placeDataChanged) {
+            mapView.refresh(placeData.getPlaces());
+            placeDataChanged = false;
+        }
+        
         wdg.animate.slideToggle(filterBox, window.innerHeight);
         wdg.animate.slideToggle(topbar, window.innerHeight);
         wdg.toggleClass(area, "slidden");
@@ -26,8 +34,8 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         /* FilterBox */
         filterBox = filterView.generate({
             data: placeData,
-            onchange: function() {console.log(placeData);
-                mapView.refresh(placeData.getPlaces());
+            onchange: function() {
+                placeDataChanged = true;
             },
             onhide: showHideFilters
         });

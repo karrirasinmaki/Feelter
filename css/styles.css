@@ -57,8 +57,8 @@ button {
 
 .topbar, .infobox, .map-infobox, .infobutton, .blue {
     overflow: hidden;
-    background: #5f92ff;
-    color: #fff;
+    background: #ff7074;
+    color: #E5FFE3;
     z-index: 10;
 }
 .guidebutton, .infobutton {
@@ -73,7 +73,7 @@ button {
 }
 .topbar .left {
     padding-right: 2em;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #E5FFE3;
 }
 .topbar .right {
     line-height: 3.6em;
@@ -99,7 +99,7 @@ button {
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
     
-    border-top: 30px solid #5f92ff;
+    border-top: 30px solid #ff7074;
     top. 0;
 }
 .arrow-top {                
@@ -109,7 +109,7 @@ button {
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
     
-    border-bottom: 30px solid #5f92ff;
+    border-bottom: 30px solid #ff7074;
     bottom: 0;
 }
 
@@ -120,8 +120,8 @@ button {
     top: 0;
     right: 0;
     bottom: 0;
-    background: #5f92ff;
-    color: #fff;
+    background: #ff7074;
+    color: #E5FFE3;
     text-align: center;
 }
 #splashscreen span {
@@ -176,7 +176,7 @@ button {
     color: inherit;
 }
 #filterbox .bottom button.selected {
-    border-bottom: 3px solid #fff;
+    border-bottom: 3px solid #E5FFE3;
 }
 
 #themap {
@@ -214,8 +214,8 @@ button {
     display: inline-block;
     width: 100%;
     line-height: 3em;
-    background: #fff;
-    color: #5f92ff!important;
+    background: #E5FFE3;
+    color: #ff7074!important;
     font-style: italic;
     font-size: larger;
     text-decoration: none;
@@ -271,7 +271,7 @@ button {
     float: left;
     width: 33%;
     height: 7em;
-    border: 1px solid #fff;
+    border: 1px solid #E5FFE3;
     border-top: none;
     border-left: none;
 }

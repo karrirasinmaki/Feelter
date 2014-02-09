@@ -22,7 +22,8 @@ define(["utils/utils", "loadPlaces"], function(utils, loadPlaces) {
             "Others", // 4
             "Helsingin Kahvipaahtimo", // 5
             "Kaffe Obscura", // 6
-            "Maja Coffee" // 7
+            "Maja Coffee", // 7
+            "Moak/Mokaflor" // 8
         ],
         foods: [
             "Breakfast", // 0
