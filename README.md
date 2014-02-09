@@ -11,6 +11,8 @@ Used libraries
   - https://developers.google.com/maps/documentation/javascript/
 - Animate.css - some nice animations
   - https://github.com/daneden/animate.css
+- Prefixfree.js - cross-browser support
+  - https://github.com/LeaVerou/prefixfree
 - Hammer.js - touch gestures
   - https://github.com/EightMedia/hammer.js
 
