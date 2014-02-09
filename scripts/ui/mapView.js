@@ -3,6 +3,54 @@ define(["./gmaps.infobox"], function(____) {
     var helsinki = {latlong: [60.1733244, 24.9410248]};
     var userLocation = helsinki;
     
+    var mapStyle = [
+      {
+        "featureType": "administrative",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      },{
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "simplified" }
+        ]
+      },{
+        "featureType": "road",
+        "stylers": [
+          { "visibility": "simplified" }
+        ]
+      },{
+        "featureType": "transit",
+        "stylers": [
+          { "visibility": "simplified" }
+        ]
+      },{
+        "featureType": "water",
+        "stylers": [
+          { "visibility": "simplified" }
+        ]
+      },{
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      },{
+        "featureType": "road",
+        "elementType": "labels.text",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      },{
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      },{
+      }
+    ];
+    
     var getUserPosition = function() {
         if(navigator.geolocation) {
             var pos = navigator.geolocation.getCurrentPosition(function(pos) {
@@ -104,7 +152,7 @@ define(["./gmaps.infobox"], function(____) {
                 map: map,
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(place.latlong[0], place.latlong[1]),
-                icon: ""+icon,
+                icon: icon,
                 _extraPlaceData: place,
                 _id: iterator
             });
@@ -129,9 +177,11 @@ define(["./gmaps.infobox"], function(____) {
         area.style.height = "100%";
         var mapOptions = {
             center: new google.maps.LatLng(userLocation.latlong[0], userLocation.latlong[1]),
-            zoom: 15
+            zoom: 15,
+            disableDefaultUI: true
         };
         map = new google.maps.Map(area, mapOptions);
+        map.setOptions({styles: mapStyle});
         google.maps.event.addListener(map, 'click', closeInfoBox);
         
         getUserPosition();

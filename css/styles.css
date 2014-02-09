@@ -73,7 +73,11 @@ button {
 }
 .topbar .left {
     padding-right: 2em;
-    border-right: 1px solid #E5FFE3;
+    height: 100%;
+}
+.topbar .left img {
+    height: 100%;
+    width: auto;
 }
 .topbar .right {
     line-height: 3.6em;
@@ -123,6 +127,10 @@ button {
     background: #ff7074;
     color: #E5FFE3;
     text-align: center;
+}
+#splashscreen img {
+    max-width: 100%;
+    width: 26ex;
 }
 #splashscreen span {
     position: absolute;
