@@ -13,3 +13,7 @@ Used libraries
   - https://github.com/daneden/animate.css
 - Hammer.js - touch gestures
   - https://github.com/EightMedia/hammer.js
+
+Notices
+-------
+- We are using font family Nexa and it's full commercial font package. So, don't use it without license.
