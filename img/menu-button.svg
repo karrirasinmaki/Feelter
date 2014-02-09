@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="58.6875"
+   height="41.84375"
+   id="svg3154">
+  <defs
+     id="defs3156" />
+  <metadata
+     id="metadata3159">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-345.6525,-511.44568)"
+     id="layer1">
+    <g
+       transform="translate(-204.2225,468.94568)"
+       id="g79">
+      <line
+         style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="608.55603"
+         y1="81.833"
+         x2="551.22198"
+         y2="81.833"
+         id="line81" />
+      <line
+         style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="551.88898"
+         y1="64.167"
+         x2="607.88898"
+         y2="64.167"
+         id="line83" />
+      <line
+         style="fill:none;stroke:#d26368;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="607.88898"
+         y1="46.5"
+         x2="551.88898"
+         y2="46.5"
+         id="line85" />
+    </g>
+    <g
+       transform="translate(-204.2225,468.94568)"
+       id="g87">
+      <line
+         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="607.22198"
+         y1="80.333"
+         x2="549.88898"
+         y2="80.333"
+         id="line89" />
+      <line
+         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="550.55603"
+         y1="62.667"
+         x2="606.55603"
+         y2="62.667"
+         id="line91" />
+      <line
+         style="fill:none;stroke:#e5ffe3;stroke-width:5;stroke-miterlimit:10"
+         stroke-miterlimit="10"
+         x1="606.55603"
+         y1="45"
+         x2="550.55603"
+         y2="45"
+         id="line93" />
+    </g>
+  </g>
+</svg>

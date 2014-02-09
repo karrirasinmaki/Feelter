@@ -194,7 +194,8 @@ define(["./gmaps.infobox"], function(____) {
     
     return {
         init: init,
-        refresh: refresh
+        refresh: refresh,
+        userLocation: userLocation
     }
     
 });

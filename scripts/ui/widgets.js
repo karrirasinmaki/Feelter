@@ -42,10 +42,15 @@ define(function() {
         return div;
     };
     
-    var infoButton = function(params) {
+    var circleButton = function(params) {
         var btn = button(params);
+        btn.className += " circlebutton";
+        return btn;
+    };
+    
+    var infoButton = function(params) {
+        var btn = circleButton(params);
         btn.className += " infobutton";
-        
         return btn;
     };
     
@@ -149,6 +154,7 @@ define(function() {
         box: box,
         button: button,
         topBar: topBar,
+        circleButton: circleButton,
         infoButton: infoButton,
         infoBox: infoBox,
         

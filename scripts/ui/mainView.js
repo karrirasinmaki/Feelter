@@ -1,12 +1,13 @@
-define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, filterView) {
+define(["./mapView", "placeData", "./filterView", "./listView"], function(mapView, placeData, filterView, listView) {
     
     var context;
+    var places;
     
     var INFO_BOX_TEXT = "<p><b>Plaa plaa plaa.</b></p><p>This is a map, and you are a human. Can we cooperate? Nice!</p><p>Hopefully I can help you to find new experiences and meet nice people around coffee. Use me wisely.</p><p>Mustana coffee blog and Rasinmäki & Rasinmäki web developers have created me. Salute them!</p><p>www.mustana.fi<br>www.rara.fi</p>"
     
     var TOP_BAR_INNER_HTML = '<div class="left"><img src="img/logo.svg" alt="logo"></div><div class="right"><strong>Find the best brew!</strong></div>';
     
-    var area, filterBox, topbar, infoBox, infoButton;
+    var area, filterBox, topbar, listBox, infoBox, infoButton, listButton;
     
     var placeDataChanged = false;
     
@@ -14,7 +15,8 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         var wdg = context.widgets;
         
         if(wdg.hasClass(filterBox, "slidden") && placeDataChanged) {
-            mapView.refresh(placeData.getPlaces());
+            places = placeData.getPlaces();
+            mapView.refresh(places);
             placeDataChanged = false;
         }
         
@@ -49,6 +51,22 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         });
         topbar.id = "topbar";
         
+        /* ListBox */
+        listBox = listView.generate({
+            data: places
+        });
+        wdg.animate.slideDown(listBox, function() {
+            wdg.toggleClass(listBox, "slidden");
+        }, 1);
+        
+        listButton = wdg.box({
+            onclick: function() {
+                listBox.open(places, placeData, mapView.userLocation);
+                wdg.animate.slideHide(listBox);
+            }
+        });
+        listButton.id = "listbutton";
+        
         /* InfoBox */
         infoBox = wdg.infoBox({
             innerHTML: INFO_BOX_TEXT
@@ -66,14 +84,17 @@ define(["./mapView", "placeData", "./filterView"], function(mapView, placeData, 
         body.appendChild(topbar);
         body.appendChild(filterBox);
         body.appendChild(area);
+        body.appendChild(listBox);
         body.appendChild(infoBox);
         body.appendChild(infoButton);
+        body.appendChild(listButton);
         
         //area.style.top = topbar.offsetHeight + "px";
         
         mapView.init(context, area);
         placeData.load(function() {
-            mapView.refresh(placeData.getPlaces());
+            places = placeData.getPlaces();
+            mapView.refresh(places);
         });
     };
     
