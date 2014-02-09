@@ -3,7 +3,7 @@ define(["./mapView", "placeData", "./filterView", "./listView"], function(mapVie
     var context;
     var places;
     
-    var INFO_BOX_TEXT = "<p><b>Plaa plaa plaa.</b></p><p>This is a map, and you are a human. Can we cooperate? Nice!</p><p>Hopefully I can help you to find new experiences and meet nice people around coffee. Use me wisely.</p><p>Mustana coffee blog and Rasinmäki & Rasinmäki web developers have created me. Salute them!</p><p>www.mustana.fi<br>www.rara.fi</p>"
+    var INFO_BOX_TEXT = "<p><b>Plaa plaa plaa.</b></p><p>This is a map, and you are a human. Can we cooperate? Nice!</p><p>Hopefully I can help you to find new experiences and meet nice people around coffee. Use me wisely.</p><p>Mustana coffee blog and Rasinmäki & Rasinmäki web developers have created me. Salute them!</p><p>www.mustana.fi</p>"
     
     var TOP_BAR_INNER_HTML = '<div class="left"><img src="img/logo.svg" alt="logo"></div><div class="right"><strong>Find the best brew!</strong></div>';
     
