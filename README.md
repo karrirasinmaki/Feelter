@@ -3,6 +3,8 @@ Awe & Some Coffee
 
 App that lists interesting coffee shops in Helsinki. You can find shops by different criterias.
 
+At the moment we have only selected coffee shops in Helsinki listed.
+
 Used libraries
 --------------
 - Require.js - modules
